@@ -1,6 +1,18 @@
 /**
  *
  * Copywrite (c) 2010, David Beale
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  *
  */
 package com.bealearts.collection
@@ -12,7 +24,6 @@ package com.bealearts.collection
 	import flash.utils.IDataOutput;
 	import flash.utils.IExternalizable;
 	
-	import mx.collections.ArrayList;
 	import mx.collections.IList;
 	import mx.core.IPropertyChangeNotifier;
 	import mx.events.CollectionEvent;
@@ -363,7 +374,7 @@ package com.bealearts.collection
 		
 		
 		/**
-		 * Ensures that only the source property is serialized.
+		 * Only the source property is serialized.
 		 */
 		public function writeExternal(output:IDataOutput):void
 		{
@@ -372,7 +383,7 @@ package com.bealearts.collection
 		
 
 		/**
-		 * Ensures that only the source property is serialized.
+		 * Only the source property is serialized.
 		 */
 		public function readExternal(input:IDataInput):void
 		{
