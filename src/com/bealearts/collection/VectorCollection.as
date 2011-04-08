@@ -72,6 +72,23 @@ package com.bealearts.collection
 		}
 		
 		
+		
+		/**
+		 *  Removes an item form the Collection
+		 *  This is a convenience function which is not par of the IList interface
+		 * 
+		 *  @param item The item to remove
+		 * 
+		 *  @return The index the item was at in the collection, -1 if not found
+		 */
+		public function removeItem(item:Object):int
+		{
+			return VectorList(this.list).removeItem(item);
+		}
+		
+		
+		
+		
 		/**
 		 *  Only the source property is serialized.
 		 */
