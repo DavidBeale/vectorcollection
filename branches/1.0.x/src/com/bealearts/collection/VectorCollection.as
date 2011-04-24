@@ -35,6 +35,7 @@ package com.bealearts.collection
 	 * @see ArrayCollection
 	 * @see Vector
 	 */
+	[RemoteClass]
 	[DefaultProperty("source")]
 	[Bindable("listChanged")]
 	public class VectorCollection extends ListCollectionView implements IExternalizable
@@ -63,12 +64,19 @@ package com.bealearts.collection
 		
 		/**
 		 * Constructor
+		 * 
+		 * <p>We have to allow for a 'default' constructor, to support Serialisation</p>
+		 * 
+		 * @param source Source Vector for the Collection
 		 */
-		public function VectorCollection(source:Object)
+		public function VectorCollection(source:Object=null)
 		{
 			super();
 			
-			this.source = source;
+			if (source)
+				this.source = source;
+			else
+				this.source = new Vector.<Object>;
 		}
 		
 		
