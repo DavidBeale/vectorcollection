@@ -35,6 +35,7 @@ package com.bealearts.collection
 	 * @see ArrayCollection
 	 * @see Vector
 	 */
+	[RemoteClass]
 	[DefaultProperty("source")]
 	[Bindable("listChanged")]
 	public class VectorCollection extends ListCollectionView implements IExternalizable
@@ -63,13 +64,37 @@ package com.bealearts.collection
 		
 		/**
 		 * Constructor
+		 * 
+		 * <p>We have to allow for a 'default' constructor, to support Serialisation</p>
+		 * 
+		 * @param source Source Vector for the Collection
 		 */
-		public function VectorCollection(source:Object)
+		public function VectorCollection(source:Object=null)
 		{
 			super();
 			
-			this.source = source;
+			if (source)
+				this.source = source;
+			else
+				this.source = new Vector.<Object>;
 		}
+		
+		
+		
+		/**
+		 *  Removes an item form the Collection
+		 *  This is a convenience function which is not par of the IList interface
+		 * 
+		 *  @param item The item to remove
+		 * 
+		 *  @return The index the item was at in the collection, -1 if not found
+		 */
+		public function removeItem(item:Object):int
+		{
+			return VectorList(this.list).removeItem(item);
+		}
+		
+		
 		
 		
 		/**

@@ -41,6 +41,7 @@ package com.bealearts.collection
 	 * @see VectorCollection
 	 * @see ArrayList
 	 */
+	[RemoteClass]
 	public class VectorList extends EventDispatcher implements IList, IExternalizable, IPropertyChangeNotifier
 	{
 		/* PUBLIC */
@@ -91,14 +92,21 @@ package com.bealearts.collection
 		
 		/**
 		 * Constructor
+		 * 
+		 * <p>We have to allow for a 'default' constructor, to support Serialisation</p>
+		 * 
+		 * @param source Source Vector for the List
 		 */
-		public function VectorList(source:Vector.<Object>)
+		public function VectorList(source:Vector.<Object>=null)
 		{
 			super();
 			
 			this.resourceManager = ResourceManager.getInstance();
 			
-			this.source = source;
+			if (source)
+				this.source = source;
+			else
+				this.source = new Vector.<Object>;
 		}
 		
 		
