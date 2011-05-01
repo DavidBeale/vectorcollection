@@ -57,7 +57,7 @@ package com.bealearts.collection
 
 		public function set source(value:Object):void
 		{	
-			this.list = new VectorList( Vector.<Object>(value) );
+			this.list = new VectorList( value );
 		}		
 		
 		
@@ -105,7 +105,7 @@ package com.bealearts.collection
 			if (this.list is IExternalizable)
 				IExternalizable(this.list).readExternal(input);
 			else
-				this.source = input.readObject() as Vector.<Object>;
+				this.source = input.readObject() as Vector;
 		}
 		
 		/**
