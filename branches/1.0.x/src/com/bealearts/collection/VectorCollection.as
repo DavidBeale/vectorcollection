@@ -46,6 +46,8 @@ package com.bealearts.collection
 		 *  The source of data in the VectorCollection.
 		 *  The VectorCollection object does not represent any changes that you make
 		 *  directly to the source array. Always use the ICollectionView or IList methods to modify the collection.
+		 *
+		 *  @throws ArgumentError if parameter is not a Vector		 
 		 */
 		public function get source():Object
 		{
@@ -57,7 +59,11 @@ package com.bealearts.collection
 
 		public function set source(value:Object):void
 		{	
-			this.list = new VectorList( value );
+			// Check for a Vector
+			if (!(value is Vector.<*>))
+				throw new ArgumentError('Argument is not a Vector');
+			
+			this.list = new VectorList( value as Vector.<*> );
 		}		
 		
 		

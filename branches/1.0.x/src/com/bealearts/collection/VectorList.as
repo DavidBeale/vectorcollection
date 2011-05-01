@@ -49,12 +49,12 @@ package com.bealearts.collection
 		/**
 		 * Source Vector for the List
 		 */
-		public function get source():Object
+		public function get source():Vector.<*>
 		{
 			return this._source;
 		}
 		
-		public function set source(value:Object):void
+		public function set source(value:Vector.<*>):void
 		{
 			/* LOCALS */
 			var index:uint = 0;
@@ -97,7 +97,7 @@ package com.bealearts.collection
 		 * 
 		 * @param source Source Vector for the List
 		 */
-		public function VectorList(source:Object=null)
+		public function VectorList(source:Vector.<*>=null)
 		{
 			super();
 			
@@ -438,7 +438,7 @@ package com.bealearts.collection
 		
 		private var _uid:String = '';
 		
-		private var _source:Object = null;
+		private var _source:Vector.<*> = null;
 		
 		private var resourceManager:IResourceManager = null;
 		
