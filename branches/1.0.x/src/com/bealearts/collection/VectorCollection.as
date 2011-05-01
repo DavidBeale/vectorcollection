@@ -111,7 +111,7 @@ package com.bealearts.collection
 			if (this.list is IExternalizable)
 				IExternalizable(this.list).readExternal(input);
 			else
-				this.source = input.readObject() as Vector;
+				this.source = input.readObject() as Vector.<*>;
 		}
 		
 		/**
