@@ -35,6 +35,7 @@ package com.bealearts.collection
 	 * @see ArrayCollection
 	 * @see Vector
 	 */
+	[RemoteClass]
 	[DefaultProperty("source")]
 	[Bindable("listChanged")]
 	public class VectorCollection extends ListCollectionView implements IExternalizable
@@ -45,6 +46,8 @@ package com.bealearts.collection
 		 *  The source of data in the VectorCollection.
 		 *  The VectorCollection object does not represent any changes that you make
 		 *  directly to the source array. Always use the ICollectionView or IList methods to modify the collection.
+		 *
+		 *  @throws ArgumentError if parameter is not a Vector		 
 		 */
 		public function get source():Object
 		{
@@ -56,20 +59,48 @@ package com.bealearts.collection
 
 		public function set source(value:Object):void
 		{	
-			this.list = new VectorList( Vector.<Object>(value) );
+			// Check for a Vector
+			if (!(value is Vector.<*>))
+				throw new ArgumentError('Argument is not a Vector');
+			
+			this.list = new VectorList( value as Vector.<*> );
 		}		
 		
 		
 		
 		/**
 		 * Constructor
+		 * 
+		 * <p>We have to allow for a 'default' constructor, to support Serialisation</p>
+		 * 
+		 * @param source Source Vector for the Collection
 		 */
-		public function VectorCollection(source:Object)
+		public function VectorCollection(source:Object=null)
 		{
 			super();
 			
-			this.source = source;
+			if (source)
+				this.source = source;
+			else
+				this.source = new Vector.<Object>;
 		}
+		
+		
+		
+		/**
+		 *  Removes an item form the Collection
+		 *  This is a convenience function which is not par of the IList interface
+		 * 
+		 *  @param item The item to remove
+		 * 
+		 *  @return The index the item was at in the collection, -1 if not found
+		 */
+		public function removeItem(item:Object):int
+		{
+			return VectorList(this.list).removeItem(item);
+		}
+		
+		
 		
 		
 		/**
@@ -80,7 +111,7 @@ package com.bealearts.collection
 			if (this.list is IExternalizable)
 				IExternalizable(this.list).readExternal(input);
 			else
-				this.source = input.readObject() as Vector.<Object>;
+				this.source = input.readObject() as Vector.<*>;
 		}
 		
 		/**
