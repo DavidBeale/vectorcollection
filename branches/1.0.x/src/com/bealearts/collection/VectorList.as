@@ -49,16 +49,20 @@ package com.bealearts.collection
 		/**
 		 * Source Vector for the List
 		 */
-		public function get source():Vector.<*>
+		public function get source():Object
 		{
 			return this._source;
 		}
 		
-		public function set source(value:Vector.<*>):void
+		public function set source(value:Object):void
 		{
 			/* LOCALS */
 			var index:uint = 0;
 			var event:CollectionEvent = null;
+			
+			// Check for a Vector
+			if (!(value is Vector.<*>))
+				throw new ArgumentError('Argument is not a Vector');
 			
 			if (this._source && this._source.length)
 			{
@@ -97,7 +101,7 @@ package com.bealearts.collection
 		 * 
 		 * @param source Source Vector for the List
 		 */
-		public function VectorList(source:Vector.<*>=null)
+		public function VectorList(source:Object=null)
 		{
 			super();
 			
@@ -434,33 +438,6 @@ package com.bealearts.collection
 		
 		/* PROTECTED */
 		
-		/* PRIVATE */
-		
-		private var _uid:String = '';
-		
-		private var _source:Vector.<*> = null;
-		
-		private var resourceManager:IResourceManager = null;
-		
-		private var dispatchItemEvents:uint = 0;
-		
-		private var sourceAsArray:Array = null;
-		
-		private var sourceAsArrayValid:Boolean = false;
-		
-		
-		/** 
-		 * If the item is an IEventDispatcher monitor it for updates. 
-		 * 
-		 * @param item Item to monitor 
-		 */
-		private function monitorUpdates(item:Object):void
-		{
-			if (item && (item is IEventDispatcher))
-				IEventDispatcher(item).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, this.onItemUpdate, false, 0, true);
-		}
-		
-		
 		/** 
 		 * If the item is an IEventDispatcher stop watching it for updates.
 		 * 
@@ -494,6 +471,34 @@ package com.bealearts.collection
 				this.dispatchEvent(itemEvent);
 			}
 		}		
+				
+		
+		
+		/* PRIVATE */
+		
+		private var _uid:String = '';
+		
+		private var _source:Object = null;
+		
+		private var resourceManager:IResourceManager = null;
+		
+		private var dispatchItemEvents:uint = 0;
+		
+		private var sourceAsArray:Array = null;
+		
+		private var sourceAsArrayValid:Boolean = false;
+		
+		
+		/** 
+		 * If the item is an IEventDispatcher monitor it for updates. 
+		 * 
+		 * @param item Item to monitor 
+		 */
+		private function monitorUpdates(item:Object):void
+		{
+			if (item && (item is IEventDispatcher))
+				IEventDispatcher(item).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, this.onItemUpdate, false, 0, true);
+		}
 		
 		
 		/**
