@@ -46,6 +46,28 @@ package com.bealearts.collection
 	{
 		/* PUBLIC */
 		
+		
+		/**
+		 * Helper function to test if an Object is a Vector
+		 */
+		public static function isVector(value:Object):Boolean
+		{
+			// Have to handle primatives specifically for some reason
+			if ( 
+				(value is Vector.<*>) ||
+				(value is Vector.<int>) ||
+				(value is Vector.<uint>) ||
+				(value is Vector.<String>) ||
+				(value is Vector.<Number>) ||
+				(value is Vector.<Boolean>)
+			)
+				return true;
+			else
+				return false;
+				
+		}
+		
+		
 		/**
 		 * Source Vector for the List
 		 */
@@ -61,7 +83,7 @@ package com.bealearts.collection
 			var event:CollectionEvent = null;
 			
 			// Check for a Vector
-			if (!(value is Vector.<*>))
+			if ( !VectorList.isVector(value) )
 				throw new ArgumentError('Argument is not a Vector');
 			
 			if (this._source && this._source.length)

@@ -60,7 +60,7 @@ package com.bealearts.collection
 		public function set source(value:Object):void
 		{	
 			// Check for a Vector
-			if (!(value is Vector.<*>))
+			if ( !VectorList.isVector(value) )
 				throw new ArgumentError('Argument is not a Vector');
 			
 			this.list = new VectorList( value as Vector.<*> );
