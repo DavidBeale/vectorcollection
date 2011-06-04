@@ -46,19 +46,46 @@ package com.bealearts.collection
 	{
 		/* PUBLIC */
 		
+		
+		/**
+		 * Source Vector for the List
+		 * Helper function to test if an Object is a Vector
+		 */
+		public static function isVector(value:Object):Boolean
+		{
+			// Have to handle primatives specifically for some reason
+			if ( 
+				(value is Vector.<*>) ||
+				(value is Vector.<int>) ||
+				(value is Vector.<uint>) ||
+				(value is Vector.<String>) ||
+				(value is Vector.<Number>) ||
+				(value is Vector.<Boolean>)
+			)
+				return true;
+			else
+				return false;
+				
+		}
+		
+		
 		/**
 		 * Source Vector for the List
 		 */
-		public function get source():Vector.<*>
+		public function get source():Object
 		{
 			return this._source;
 		}
 		
-		public function set source(value:Vector.<*>):void
+		public function set source(value:Object):void
 		{
 			/* LOCALS */
 			var index:uint = 0;
 			var event:CollectionEvent = null;
+			
+			// Check for a Vector
+			if ( !VectorList.isVector(value) )
+				throw new ArgumentError('Argument is not a Vector');
 			
 			if (this._source && this._source.length)
 			{
@@ -97,7 +124,7 @@ package com.bealearts.collection
 		 * 
 		 * @param source Source Vector for the List
 		 */
-		public function VectorList(source:Vector.<*>=null)
+		public function VectorList(source:Object=null)
 		{
 			super();
 			
@@ -434,33 +461,6 @@ package com.bealearts.collection
 		
 		/* PROTECTED */
 		
-		/* PRIVATE */
-		
-		private var _uid:String = '';
-		
-		private var _source:Vector.<*> = null;
-		
-		private var resourceManager:IResourceManager = null;
-		
-		private var dispatchItemEvents:uint = 0;
-		
-		private var sourceAsArray:Array = null;
-		
-		private var sourceAsArrayValid:Boolean = false;
-		
-		
-		/** 
-		 * If the item is an IEventDispatcher monitor it for updates. 
-		 * 
-		 * @param item Item to monitor 
-		 */
-		private function monitorUpdates(item:Object):void
-		{
-			if (item && (item is IEventDispatcher))
-				IEventDispatcher(item).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, this.onItemUpdate, false, 0, true);
-		}
-		
-		
 		/** 
 		 * If the item is an IEventDispatcher stop watching it for updates.
 		 * 
@@ -494,6 +494,34 @@ package com.bealearts.collection
 				this.dispatchEvent(itemEvent);
 			}
 		}		
+				
+		
+		
+		/* PRIVATE */
+		
+		private var _uid:String = '';
+		
+		private var _source:Object = null;
+		
+		private var resourceManager:IResourceManager = null;
+		
+		private var dispatchItemEvents:uint = 0;
+		
+		private var sourceAsArray:Array = null;
+		
+		private var sourceAsArrayValid:Boolean = false;
+		
+		
+		/** 
+		 * If the item is an IEventDispatcher monitor it for updates. 
+		 * 
+		 * @param item Item to monitor 
+		 */
+		private function monitorUpdates(item:Object):void
+		{
+			if (item && (item is IEventDispatcher))
+				IEventDispatcher(item).addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, this.onItemUpdate, false, 0, true);
+		}
 		
 		
 		/**
