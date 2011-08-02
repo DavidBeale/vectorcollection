@@ -8,7 +8,7 @@
 	<packaging>swc</packaging>
 
 	<name>VectorCollection</name>
-	<description>Flex library which allows one to wrap a Vector in order to access it using Binding in the same way as an ArrayColletion.</description>
+	<description>Flex library which allows one to wrap a Vector in order to access it using Binding in the same way as an ArrayCollection.</description>
 	<url>http://vectorcollection.riaforge.org/</url>
 
 	<parent>
@@ -53,6 +53,7 @@
 
 					<sourcePaths>
 						<path>src/main/flex</path>
+						<path>src/test/flex</path>
 					</sourcePaths>
 
 					<accessible>false</accessible>
@@ -197,7 +198,7 @@
 
 
 	<!--
-		Why are flex compiler artifacts not promoted to central ??
+		Why are Flex compiler artifacts not promoted to central ??
 	-->
 	<repositories>
 		<repository>
