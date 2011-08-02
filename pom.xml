@@ -20,6 +20,8 @@
 	<properties>
 		<flex-framework.version>4.1.0.16076</flex-framework.version>
 		<flexmojos.version>3.8</flexmojos.version>
+		<flexunit4.version>4.0-rc-1</flexunit4.version>
+        <!-- <asmock.version>1.0</asmock.version>  -->
 	</properties>
 
 	<build>
@@ -163,19 +165,53 @@
 			<version>${flex-framework.version}</version>
 			<type>pom</type>
 		</dependency>
+		
+		
+		<!-- TEST -->
 
+        <dependency>
+            <groupId>com.adobe.flexunit</groupId>
+            <artifactId>flexunit</artifactId>
+            <version>${flexunit4.version}</version>
+            <type>swc</type>
+            <scope>test</scope>
+        </dependency>
+        <!-- 
+        <dependency>
+			<groupId>asmock</groupId>
+			<artifactId>asmock</artifactId>
+			<version>${asmock.version}</version>
+			<type>swc</type>
+			<scope>test</scope>
+		</dependency>
+		
+        <dependency>
+			<groupId>asmock</groupId>
+			<artifactId>asmock-flexunit4</artifactId>
+			<version>${asmock.version}</version>
+			<type>swc</type>
+			<scope>test</scope>
+		</dependency>	
+		-->
 	</dependencies>
 
 
 	<!--
 		Why are flex compiler artifacts not promoted to central ??
 	-->
+	<repositories>
+		<repository>
+			<id>Forge</id>
+			<url>https://repository.sonatype.org/content/groups/forge/</url>		
+		</repository>
+	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>Forge</id>
 			<url>https://repository.sonatype.org/content/groups/forge/</url>
 		</pluginRepository>
 	</pluginRepositories>
+	
 
 	<scm>
 		<connection>scm:svn:http://svn.riaforge.org/vectorcollection/trunk/</connection>
