@@ -19,16 +19,26 @@ package com.bealearts.collection
 {
 	import flexunit.framework.Assert;
 	
+	import spark.primitives.Rect;
+	
 	public class VectorListTest
 	{		
+		public function VectorListTest()
+		{
+			
+		}
+		
+		
 		[Before]
 		public function setUp():void
 		{
+
 		}
 		
 		[After]
 		public function tearDown():void
 		{
+			this.vectorList = null;
 		}
 		
 		[BeforeClass]
@@ -41,11 +51,59 @@ package com.bealearts.collection
 		{
 		}
 		
+		
+		/* TESTS */
+		
 		[Test]
 		public function testAddItem():void
 		{
-			Assert.fail("Test method Not yet implemented");
+			var testObj:Object = new Object;
+			testObj.name = 'test';
+			
+			this.vectorList = new VectorList();
+			
+			this.vectorList.addItem(testObj);
+			Assert.assertTrue('Collection Length should be 1', this.vectorList.length == 1);
+			Assert.assertObjectEquals('Last item should be testObj', testObj, this.vectorList.getItemAt(this.vectorList.length-1));
+			
+			this.vectorList.addItem(testObj);
+			Assert.assertTrue('Collection Length should be 2', this.vectorList.length == 2);
+			Assert.assertObjectEquals('Last item should be testObj', testObj, this.vectorList.getItemAt(this.vectorList.length-1));
+			
+			this.vectorList.addItem(5);
+			Assert.assertTrue('Collection Length should be 3', this.vectorList.length == 3);
+			Assert.assertEquals('Last item should be 5', 5, this.vectorList.getItemAt(this.vectorList.length-1));
 		}
+		
+		
+		[Test]
+		public function testAddItem_typed():void
+		{
+			var testObj:Rect = new Rect();
+			testObj.width = 100;
+			testObj.height = 30;
+			
+			this.vectorList = new VectorList(Vector.<Rect>);	// Simple typed Vector
+			
+			this.vectorList.addItem(testObj);
+			Assert.assertTrue('Collection Length should be 1', this.vectorList.length == 1);
+			Assert.assertObjectEquals('Last item should be testObj', testObj, this.vectorList.getItemAt(this.vectorList.length-1));
+		}
+		
+		
+		[Test(expects="Ran")]
+		public function testAddItem_wrong_type():void
+		{
+			var testObj:Rect = new Rect();
+			testObj.width = 100;
+			testObj.height = 30;
+			
+			this.vectorList = new VectorList(Vector.<Rect>);	// Simple typed Vector
+			
+			this.vectorList.addItem( new Object() );
+		}	
+		
+		
 		
 		[Test]
 		public function testAddItemAt():void
@@ -154,5 +212,10 @@ package com.bealearts.collection
 		{
 			Assert.fail("Test method Not yet implemented");
 		}
+		
+		
+		/* PRIVATE */
+		
+		private var vectorList:VectorList = null;
 	}
 }
