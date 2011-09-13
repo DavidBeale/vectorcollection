@@ -83,7 +83,7 @@ package com.bealearts.collection
 			testObj.width = 100;
 			testObj.height = 30;
 			
-			this.vectorList = new VectorList(Vector.<Rect>);	// Simple typed Vector
+			this.vectorList = new VectorList(new Vector.<Rect>);	// Simple typed Vector
 			
 			this.vectorList.addItem(testObj);
 			Assert.assertTrue('Collection Length should be 1', this.vectorList.length == 1);
@@ -91,20 +91,34 @@ package com.bealearts.collection
 		}
 		
 		
-		[Test(expects="Ran")]
+		[Test]
+		public function testAddItem_typed_primative():void
+		{
+			
+			this.vectorList = new VectorList(new Vector.<Boolean>);	// Simple typed Vector
+			
+			this.vectorList.addItem(true);
+			Assert.assertTrue('Collection Length should be 1', this.vectorList.length == 1);
+			Assert.assertTrue('Last item should be true', this.vectorList.getItemAt(this.vectorList.length-1));
+		}		
+		
+		
+		[Test(expects="TypeError")]
 		public function testAddItem_wrong_type():void
 		{
 			var testObj:Rect = new Rect();
 			testObj.width = 100;
 			testObj.height = 30;
 			
-			this.vectorList = new VectorList(Vector.<Rect>);	// Simple typed Vector
+			this.vectorList = new VectorList(new Vector.<Rect>);	// Simple typed Vector
 			
-			this.vectorList.addItem( new Object() );
+			this.vectorList.addItem( new Object() ); 	// Should tigger wrong type error
 		}	
 		
 		
-		
+		/*
+			TODO !!
+			
 		[Test]
 		public function testAddItemAt():void
 		{
@@ -200,19 +214,19 @@ package com.bealearts.collection
 		{
 			Assert.fail("Test method Not yet implemented");
 		}
-		
+		*/
 		[Test]
 		public function testVectorList():void
 		{
-			Assert.fail("Test method Not yet implemented");
+			this.vectorList = new VectorList();
 		}
-		
+		/*
 		[Test]
 		public function testWriteExternal():void
 		{
 			Assert.fail("Test method Not yet implemented");
 		}
-		
+		*/
 		
 		/* PRIVATE */
 		
