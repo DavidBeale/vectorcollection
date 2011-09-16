@@ -16,13 +16,19 @@
  *
  */
 package com.bealearts.collection
-{
+{	
 	import flexunit.framework.Assert;
+	
+	import mx.collections.IList;
 	
 	import spark.primitives.Rect;
 	
 	public class VectorCollectionTest
 	{		
+		[Mock]
+		public static var withMocks:Array = [IList];
+		
+
 		public function VectorCollectionTest()
 		{
 			
@@ -32,6 +38,7 @@ package com.bealearts.collection
 		[Before]
 		public function setUp():void
 		{
+
 		}
 		
 		[After]
@@ -61,30 +68,7 @@ package com.bealearts.collection
 		[Test]
 		public function testRemoveItem():void
 		{
-			var testObj1:Rect = new Rect();
-			testObj1.width = 100;
-			testObj1.height = 30;
 			
-			var testObj2:Rect = new Rect();
-			testObj2.width = 200;
-			testObj2.height = 30;
-			
-			var testObj3:Rect = new Rect();
-			testObj3.width = 300;
-			testObj3.height = 30;
-			
-			this.vectorCollection = new VectorCollection( new Vector.<Rect> );
-			this.vectorCollection.addItem(testObj1);
-			this.vectorCollection.addItem(testObj2);
-			this.vectorCollection.addItem(testObj3);
-			
-			Assert.assertTrue('Collection Length should be 3', this.vectorCollection.length == 3);
-			
-			this.vectorCollection.removeItem(testObj2);
-			
-			Assert.assertTrue('Collection Length should be 2', this.vectorCollection.length == 2);
-			Assert.assertObjectEquals('Item 1 should be testObj1', testObj1, this.vectorCollection.getItemAt(0));
-			Assert.assertObjectEquals('Item 2 should be testObj3', testObj3, this.vectorCollection.getItemAt(1));
 		}
 		
 		[Test]
@@ -121,5 +105,6 @@ package com.bealearts.collection
 		/* PRIVATE */
 		
 		private var vectorCollection:VectorCollection = null;
+
 	}
 }
