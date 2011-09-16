@@ -166,13 +166,36 @@ package com.bealearts.collection
 		{
 			Assert.fail("Test method Not yet implemented");
 		}
-		
+		*/
 		[Test]
 		public function testRemoveItem():void
 		{
-			Assert.fail("Test method Not yet implemented");
+			var testObj1:Rect = new Rect();
+			testObj1.width = 100;
+			testObj1.height = 30;
+			
+			var testObj2:Rect = new Rect();
+			testObj2.width = 200;
+			testObj2.height = 30;
+			
+			var testObj3:Rect = new Rect();
+			testObj3.width = 300;
+			testObj3.height = 30;
+			
+			this.vectorList = new VectorList( new Vector.<Rect> );
+			this.vectorList.addItem(testObj1);
+			this.vectorList.addItem(testObj2);
+			this.vectorList.addItem(testObj3);
+			
+			Assert.assertTrue('Collection Length should be 3', this.vectorList.length == 3);
+			
+			this.vectorList.removeItem(testObj2);
+			
+			Assert.assertTrue('Collection Length should be 2', this.vectorList.length == 2);
+			Assert.assertObjectEquals('Item 1 should be testObj1', testObj1, this.vectorList.getItemAt(0));
+			Assert.assertObjectEquals('Item 2 should be testObj3', testObj3, this.vectorList.getItemAt(1));
 		}
-		
+		/*
 		[Test]
 		public function testRemoveItemAt():void
 		{
