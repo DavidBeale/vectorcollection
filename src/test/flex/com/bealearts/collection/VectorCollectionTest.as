@@ -17,6 +17,8 @@
  */
 package com.bealearts.collection
 {	
+	import flash.utils.IDataInput;
+	
 	import flexunit.framework.Assert;
 	
 	import mx.collections.IList;
@@ -62,13 +64,27 @@ package com.bealearts.collection
 		[Test]
 		public function testReadExternal():void
 		{
-			//Assert.fail("Test method Not yet implemented");
+			var mockList:VectorListMock = new VectorListMock();
+			
+			this.vectorCollection = new VectorCollection();
+			this.vectorCollection.list = mockList;
+			
+			Assert.assertFalse('Mock List method should not have been called yet', mockList.called);
+			this.vectorCollection.readExternal(null);
+			Assert.assertTrue('Mock list method should have been called', mockList.called);
 		}
 		
 		[Test]
 		public function testRemoveItem():void
 		{
+			var mockList:VectorListMock = new VectorListMock();
 			
+			this.vectorCollection = new VectorCollection();
+			this.vectorCollection.list = mockList;
+				
+			Assert.assertFalse('Mock List method should not have been called yet', mockList.called);
+			this.vectorCollection.removeItem(new Object());
+			Assert.assertTrue('Mock list method should have been called', mockList.called);
 		}
 		
 		[Test]
@@ -98,7 +114,14 @@ package com.bealearts.collection
 		[Test]
 		public function testWriteExternal():void
 		{
-			//Assert.fail("Test method Not yet implemented");
+			var mockList:VectorListMock = new VectorListMock();
+			
+			this.vectorCollection = new VectorCollection();
+			this.vectorCollection.list = mockList;
+			
+			Assert.assertFalse('Mock List method should not have been called yet', mockList.called);
+			this.vectorCollection.writeExternal(null);
+			Assert.assertTrue('Mock list method should have been called', mockList.called);
 		}
 		
 		
