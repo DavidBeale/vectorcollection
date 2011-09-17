@@ -1,0 +1,246 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.bealearts.collection</groupId>
+	<artifactId>vector-collection</artifactId>
+	<version>1.1.0-Final</version>
+	<packaging>swc</packaging>
+
+	<name>VectorCollection</name>
+	<description>Flex library which allows one to wrap a Vector in order to access it using Binding in the same way as an ArrayCollection.</description>
+	<url>http://vectorcollection.riaforge.org/</url>
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+
+	<properties>
+		<flex-framework.version>4.1.0.16076</flex-framework.version>
+		<flexmojos.version>3.8</flexmojos.version>
+		<flexunit4.version>4.0-rc-1</flexunit4.version>
+		<asmock.version>1.0</asmock.version>
+	</properties>
+
+	<build>
+		<sourceDirectory>src/main/flex</sourceDirectory>
+		<testSourceDirectory>src/test/flex</testSourceDirectory>
+
+		<plugins>
+			<plugin>
+				<groupId>org.sonatype.flexmojos</groupId>
+				<artifactId>flexmojos-maven-plugin</artifactId>
+				<version>${flexmojos.version}</version>
+				<extensions>true</extensions>
+
+				<dependencies>
+					<dependency>
+						<groupId>com.adobe.flex</groupId>
+						<artifactId>compiler</artifactId>
+						<version>${flex-framework.version}</version>
+						<type>pom</type>
+					</dependency>
+				</dependencies>
+
+				<configuration>
+					<includeAsClasses>
+						<sources>
+							<directory>${basedir}/src/main/flex</directory>
+						</sources>
+					</includeAsClasses>
+
+					<sourcePaths>
+						<path>src/main/flex</path>
+						<path>src/test/flex</path>
+					</sourcePaths>
+
+					<accessible>false</accessible>
+					<allowSourcePathOverlap>true</allowSourcePathOverlap>
+					<compiledLocales>
+						<locale>en_US</locale>
+					</compiledLocales>
+					<configurationReport>true</configurationReport>
+					<encoding>UTF-8</encoding>
+					<debug>false</debug>
+					<keepGeneratedActionscript>false</keepGeneratedActionscript>
+					<optimize>true</optimize>
+					<targetPlayer>10.1.0</targetPlayer>
+					<verboseStacktraces>true</verboseStacktraces>
+
+					<metadata>
+						<title>VectorCollection</title>
+						<description>http://vectorcollection.riaforge.org/</description>
+						<publishers>
+							<publisher>BealeARTS</publisher>
+						</publishers>
+						<creators>
+							<creator>David Beale</creator>
+						</creators>
+						<languages>
+							<language>EN</language>
+						</languages>
+					</metadata>
+
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>compile-swc</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>compile-swc</goal>
+						</goals>
+					</execution>
+				</executions>
+
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.adobe.flex.framework</groupId>
+			<artifactId>playerglobal</artifactId>
+			<version>${flex-framework.version}</version>
+			<type>swc</type>
+			<classifier>10.1</classifier>
+			<scope>compile</scope>
+		</dependency>
+
+		<!--
+			Flex Framework libs
+		-->
+		<dependency>
+			<groupId>com.adobe.flex.framework</groupId>
+			<artifactId>textLayout</artifactId>
+			<version>${flex-framework.version}</version>
+			<type>swc</type>
+			<scope>compile</scope>
+		</dependency>
+		<!-- OSMF SWC would go here. -->
+		<dependency>
+			<groupId>com.adobe.flex.framework</groupId>
+			<artifactId>framework</artifactId>
+			<version>${flex-framework.version}</version>
+			<type>swc</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.adobe.flex.framework</groupId>
+			<artifactId>spark</artifactId>
+			<version>${flex-framework.version}</version>
+			<type>swc</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.adobe.flex.framework</groupId>
+			<artifactId>sparkskins</artifactId>
+			<version>${flex-framework.version}</version>
+			<type>swc</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.adobe.flex.framework</groupId>
+			<artifactId>rpc</artifactId>
+			<version>${flex-framework.version}</version>
+			<type>swc</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.adobe.flex.framework</groupId>
+			<artifactId>datavisualization</artifactId>
+			<version>${flex-framework.version}</version>
+			<type>swc</type>
+			<scope>compile</scope>
+		</dependency>
+		<!-- Flex framework resource bundles -->
+		<dependency>
+			<groupId>com.adobe.flex.framework</groupId>
+			<artifactId>flex-framework</artifactId>
+			<version>${flex-framework.version}</version>
+			<type>pom</type>
+		</dependency>
+
+
+		<!-- TEST -->
+
+		<dependency>
+			<groupId>com.adobe.flexunit</groupId>
+			<artifactId>flexunit</artifactId>
+			<version>${flexunit4.version}</version>
+			<type>swc</type>
+			<scope>test</scope>
+		</dependency>
+		<!--
+			<dependency> <groupId>asmock</groupId>
+			<artifactId>asmock</artifactId> <version>${asmock.version}</version>
+			<type>swc</type> <scope>test</scope> </dependency> <dependency>
+			<groupId>asmock</groupId> <artifactId>asmock-flexunit4</artifactId>
+			<version>${asmock.version}</version> <type>swc</type>
+			<scope>test</scope> </dependency>
+		-->
+	</dependencies>
+
+
+	<!--
+		Why are Flex compiler artifacts not promoted to central ??
+	-->
+	<repositories>
+		<repository>
+			<id>Forge</id>
+			<url>https://repository.sonatype.org/content/groups/forge/</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>Forge</id>
+			<url>https://repository.sonatype.org/content/groups/forge/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+
+	<scm>
+		<connection>scm:svn:http://svn.riaforge.org/vectorcollection/tags/vector-collection-1.1.0-Final</connection>
+		<developerConnection>scm:svn:http://svn.riaforge.org/vectorcollection/tags/vector-collection-1.1.0-Final</developerConnection>
+		<url>http://svn.riaforge.org/vectorcollection/tags/vector-collection-1.1.0-Final</url>
+	</scm>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>david.beale</id>
+			<name>David Beale</name>
+			<email>david.beale@bealearts.co.uk</email>
+			<organization>BealeARTS</organization>
+		</developer>
+	</developers>
+
+</project>
