@@ -26,7 +26,7 @@ package com.bealearts.collection
 	import mx.collections.IList;
 	import mx.core.IPropertyChangeNotifier;
 	
-	public dynamic class VectorListMock extends EventDispatcher implements IList, IExternalizable, IPropertyChangeNotifier
+	public class VectorListMock extends VectorList
 	{
 		public var called:Boolean = false;
 		
@@ -37,64 +37,64 @@ package com.bealearts.collection
 			super();
 		}
 		
-		public function get length():int
+		override public function get length():int
 		{
 			//TODO: implement function
 			return 0;
 		}
 		
-		public function addItem(item:Object):void
+		override public function addItem(item:Object):void
 		{
 			//TODO: implement function
 		}
 		
-		public function addItemAt(item:Object, index:int):void
+		override public function addItemAt(item:Object, index:int):void
 		{
 			//TODO: implement function
 		}
 		
-		public function getItemAt(index:int, prefetch:int=0):Object
+		override public function getItemAt(index:int, prefetch:int=0):Object
 		{
 			//TODO: implement function
 			return null;
 		}
 		
-		public function getItemIndex(item:Object):int
+		override public function getItemIndex(item:Object):int
 		{
 			//TODO: implement function
 			return 0;
 		}
 		
-		public function itemUpdated(item:Object, property:Object=null, oldValue:Object=null, newValue:Object=null):void
+		override public function itemUpdated(item:Object, property:Object=null, oldValue:Object=null, newValue:Object=null):void
 		{
 			//TODO: implement function
 		}
 		
-		public function removeAll():void
+		override public function removeAll():void
 		{
 			//TODO: implement function
 		}
 		
 		
-		public function removeItem(item:Object):int
+		override public function removeItem(item:Object):int
 		{
 			this.called = true;
 			return 0;
 		};
 		
-		public function removeItemAt(index:int):Object
+		override public function removeItemAt(index:int):Object
 		{
 			//TODO: implement function
 			return null;
 		}
 		
-		public function setItemAt(item:Object, index:int):Object
+		override public function setItemAt(item:Object, index:int):Object
 		{
 			//TODO: implement function
 			return null;
 		}
 		
-		public function toArray():Array
+		override public function toArray():Array
 		{
 			//TODO: implement function
 			return null;
@@ -102,23 +102,23 @@ package com.bealearts.collection
 		
 		
 		
-		public function writeExternal(output:IDataOutput):void
+		override public function writeExternal(output:IDataOutput):void
 		{
 			this.called = true;
 		}
 		
-		public function readExternal(input:IDataInput):void
+		override public function readExternal(input:IDataInput):void
 		{
 			this.called = true;
 		}
 		
-		public function get uid():String
+		override public function get uid():String
 		{
 			//TODO: implement function
 			return null;
 		}
 		
-		public function set uid(value:String):void
+		override public function set uid(value:String):void
 		{
 			//TODO: implement function
 		}
