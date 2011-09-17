@@ -21,7 +21,7 @@
 		<flex-framework.version>4.1.0.16076</flex-framework.version>
 		<flexmojos.version>3.8</flexmojos.version>
 		<flexunit4.version>4.0-rc-1</flexunit4.version>
-        <asmock.version>1.0</asmock.version>
+		<asmock.version>1.0</asmock.version>
 	</properties>
 
 	<build>
@@ -34,7 +34,7 @@
 				<artifactId>flexmojos-maven-plugin</artifactId>
 				<version>${flexmojos.version}</version>
 				<extensions>true</extensions>
-  
+
 				<dependencies>
 					<dependency>
 						<groupId>com.adobe.flex</groupId>
@@ -95,6 +95,22 @@
 					</execution>
 				</executions>
 
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 		</plugins>
@@ -166,34 +182,25 @@
 			<version>${flex-framework.version}</version>
 			<type>pom</type>
 		</dependency>
-		
-		
+
+
 		<!-- TEST -->
 
-        <dependency>
-            <groupId>com.adobe.flexunit</groupId>
-            <artifactId>flexunit</artifactId>
-            <version>${flexunit4.version}</version>
-            <type>swc</type>
-            <scope>test</scope>
-        </dependency>
-        <!--
-        <dependency>
-			<groupId>asmock</groupId>
-			<artifactId>asmock</artifactId>
-			<version>${asmock.version}</version>
+		<dependency>
+			<groupId>com.adobe.flexunit</groupId>
+			<artifactId>flexunit</artifactId>
+			<version>${flexunit4.version}</version>
 			<type>swc</type>
 			<scope>test</scope>
 		</dependency>
-		
-        <dependency>
-			<groupId>asmock</groupId>
-			<artifactId>asmock-flexunit4</artifactId>
-			<version>${asmock.version}</version>
-			<type>swc</type>
-			<scope>test</scope>
-		</dependency>	
-		 -->
+		<!--
+			<dependency> <groupId>asmock</groupId>
+			<artifactId>asmock</artifactId> <version>${asmock.version}</version>
+			<type>swc</type> <scope>test</scope> </dependency> <dependency>
+			<groupId>asmock</groupId> <artifactId>asmock-flexunit4</artifactId>
+			<version>${asmock.version}</version> <type>swc</type>
+			<scope>test</scope> </dependency>
+		-->
 	</dependencies>
 
 
@@ -203,7 +210,7 @@
 	<repositories>
 		<repository>
 			<id>Forge</id>
-			<url>https://repository.sonatype.org/content/groups/forge/</url>		
+			<url>https://repository.sonatype.org/content/groups/forge/</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
@@ -212,7 +219,7 @@
 			<url>https://repository.sonatype.org/content/groups/forge/</url>
 		</pluginRepository>
 	</pluginRepositories>
-	
+
 
 	<scm>
 		<connection>scm:svn:http://svn.riaforge.org/vectorcollection/trunk/</connection>
