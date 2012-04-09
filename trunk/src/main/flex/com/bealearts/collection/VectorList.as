@@ -48,7 +48,6 @@ package com.bealearts.collection
 		
 		
 		/**
-		 * Source Vector for the List
 		 * Helper function to test if an Object is a Vector
 		 */
 		public static function isVector(value:Object):Boolean

@@ -17,9 +17,9 @@
 	</parent>
 
 	<properties>
-		<flex-framework.version>4.1.0.16076</flex-framework.version>
-		<flexmojos.version>3.8</flexmojos.version>
-		<flexunit4.version>4.0-rc-1</flexunit4.version>
+		<flex-framework.version>4.5.1.21328</flex-framework.version>
+		<flexmojos.version>4.0-RC2</flexmojos.version>
+		<flexunit4.version>4.1-RC2</flexunit4.version>
 		<asmock.version>1.0</asmock.version>
 	</properties>
 
@@ -65,7 +65,7 @@
 					<debug>false</debug>
 					<keepGeneratedActionscript>false</keepGeneratedActionscript>
 					<optimize>true</optimize>
-					<targetPlayer>10.1.0</targetPlayer>
+					<targetPlayer>10.2.0</targetPlayer>
 					<verboseStacktraces>true</verboseStacktraces>
 
 					<metadata>
@@ -96,24 +96,45 @@
 
 			</plugin>
 
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.4</version>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
 		</plugins>
 
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.sonatype.flexmojos
+										</groupId>
+										<artifactId>
+											flexmojos-maven-plugin
+										</artifactId>
+										<versionRange>
+											[3.8,)
+										</versionRange>
+										<goals>
+											<goal>test-compile</goal>
+											<goal>compile-swc</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		
 	</build>
 
 
@@ -124,21 +145,14 @@
 			<artifactId>playerglobal</artifactId>
 			<version>${flex-framework.version}</version>
 			<type>swc</type>
-			<classifier>10.1</classifier>
+			<classifier>10.2</classifier>
 			<scope>compile</scope>
 		</dependency>
 
 		<!--
 			Flex Framework libs
 		-->
-		<dependency>
-			<groupId>com.adobe.flex.framework</groupId>
-			<artifactId>textLayout</artifactId>
-			<version>${flex-framework.version}</version>
-			<type>swc</type>
-			<scope>compile</scope>
-		</dependency>
-		<!-- OSMF SWC would go here. -->
+
 		<dependency>
 			<groupId>com.adobe.flex.framework</groupId>
 			<artifactId>framework</artifactId>
@@ -160,20 +174,8 @@
 			<type>swc</type>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.adobe.flex.framework</groupId>
-			<artifactId>rpc</artifactId>
-			<version>${flex-framework.version}</version>
-			<type>swc</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.adobe.flex.framework</groupId>
-			<artifactId>datavisualization</artifactId>
-			<version>${flex-framework.version}</version>
-			<type>swc</type>
-			<scope>compile</scope>
-		</dependency>
+
+
 		<!-- Flex framework resource bundles -->
 		<dependency>
 			<groupId>com.adobe.flex.framework</groupId>
@@ -192,14 +194,23 @@
 			<type>swc</type>
 			<scope>test</scope>
 		</dependency>
-		<!--
-			<dependency> <groupId>asmock</groupId>
-			<artifactId>asmock</artifactId> <version>${asmock.version}</version>
-			<type>swc</type> <scope>test</scope> </dependency> <dependency>
-			<groupId>asmock</groupId> <artifactId>asmock-flexunit4</artifactId>
-			<version>${asmock.version}</version> <type>swc</type>
-			<scope>test</scope> </dependency>
-		-->
+
+		<dependency>
+			<groupId>asmock</groupId>
+			<artifactId>asmock</artifactId>
+			<version>${asmock.version}</version>
+			<type>swc</type>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>asmock</groupId>
+			<artifactId>asmock-flexunit4.1</artifactId>
+			<version>${asmock.version}</version>
+			<type>swc</type>
+			<scope>test</scope>
+		</dependency>
+	
 	</dependencies>
 
 
@@ -211,7 +222,12 @@
 			<id>Forge</id>
 			<url>https://repository.sonatype.org/content/groups/forge/</url>
 		</repository>
+		<repository>
+			<id>cairngorm3</id>
+			<url>http://svn.code.sf.net/adobe/cairngorm/code/cairngorm3/maven-repository/</url>
+		</repository>
 	</repositories>
+	
 	<pluginRepositories>
 		<pluginRepository>
 			<id>Forge</id>
@@ -242,5 +258,29 @@
 			<organization>BealeARTS</organization>
 		</developer>
 	</developers>
+	
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.4</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>				
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>

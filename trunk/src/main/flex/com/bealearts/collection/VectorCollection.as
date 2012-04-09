@@ -89,7 +89,7 @@ package com.bealearts.collection
 		
 		/**
 		 *  Removes an item form the Collection
-		 *  This is a convenience function which is not par of the IList interface
+		 *  This is a convenience function which is not part of the IList interface
 		 * 
 		 *  @param item The item to remove
 		 * 
