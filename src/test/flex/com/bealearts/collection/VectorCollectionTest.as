@@ -17,18 +17,19 @@
  */
 package com.bealearts.collection
 {	
+	
 	import flash.utils.IDataInput;
 	
 	import flexunit.framework.Assert;
 	
 	import mx.collections.IList;
 	
+	import org.hamcrest.object.nullValue;
+	
 	import spark.primitives.Rect;
 	
 	public class VectorCollectionTest
 	{		
-		[Mock]
-		public static var withMocks:Array = [IList];
 		
 
 		public function VectorCollectionTest()
