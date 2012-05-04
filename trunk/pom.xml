@@ -20,7 +20,6 @@
 		<flex-framework.version>4.5.1.21328</flex-framework.version>
 		<flexmojos.version>4.0-RC2</flexmojos.version>
 		<flexunit4.version>4.1-RC2</flexunit4.version>
-		<asmock.version>1.0</asmock.version>
 	</properties>
 
 	<build>
@@ -191,22 +190,6 @@
 			<groupId>com.adobe.flexunit</groupId>
 			<artifactId>flexunit</artifactId>
 			<version>${flexunit4.version}</version>
-			<type>swc</type>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>asmock</groupId>
-			<artifactId>asmock</artifactId>
-			<version>${asmock.version}</version>
-			<type>swc</type>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>asmock</groupId>
-			<artifactId>asmock-flexunit4.1</artifactId>
-			<version>${asmock.version}</version>
 			<type>swc</type>
 			<scope>test</scope>
 		</dependency>
