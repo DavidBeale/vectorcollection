@@ -3,7 +3,7 @@
 
 	<groupId>com.bealearts.collection</groupId>
 	<artifactId>vector-collection</artifactId>
-	<version>1.2.0-Final</version>
+	<version>1.2.1-SNAPSHOT</version>
 	<packaging>swc</packaging>
 
 	<name>VectorCollection</name>
@@ -220,9 +220,9 @@
 
 
 	<scm>
-		<connection>scm:svn:http://svn.riaforge.org/vectorcollection/tags/vector-collection-1.2.0-Final</connection>
-		<developerConnection>scm:svn:http://svn.riaforge.org/vectorcollection/tags/vector-collection-1.2.0-Final</developerConnection>
-		<url>http://svn.riaforge.org/vectorcollection/tags/vector-collection-1.2.0-Final</url>
+		<connection>scm:svn:http://svn.riaforge.org/vectorcollection/trunk/</connection>
+		<developerConnection>scm:svn:http://svn.riaforge.org/vectorcollection/trunk/</developerConnection>
+		<url>http://svn.riaforge.org/vectorcollection/trunk/</url>
 	</scm>
 
 	<licenses>
